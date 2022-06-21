@@ -12,6 +12,8 @@ sed -i -e 's/CARTENNPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.i
 mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
 systemctl daemon-reload
 systemctl restart shipping
+systemctl enable shipping
+
 
 
 
