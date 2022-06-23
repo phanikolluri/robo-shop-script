@@ -28,7 +28,7 @@ rm -rf cart &>>${LOG}
 CHECK_STAT $?
 
 PRINT "Extract CART content"
-unzip /tmp/cart.zip &>>${LOG}
+unzip -o /tmp/cart.zip &>>${LOG}
 CHECK_STAT $?
 
 mv cart-main cart
