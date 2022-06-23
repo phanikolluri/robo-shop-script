@@ -28,14 +28,14 @@ rm -rf cart &>>${LOG}
 CHECK_STAT $?
 
 PRINT "Extract CART content"
-unzip /tmp/cart.zip &>>${LOG}
+unzip  /tmp/cart.zip &>>${LOG}
 CHECK_STAT $?
 
 PRINT cart-main cart
 cd cart
 
 PRINT "Install NODEJS dependencies for cart component"
-npm install &>>${LOG}
+npm  install &>>${LOG}
 CHECK_STAT $?
 
 PRINT "Update Systemd Configuration"
