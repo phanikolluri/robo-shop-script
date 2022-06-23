@@ -31,7 +31,7 @@ PRINT "Extract CART content"
 unzip /tmp/cart.zip &>>${LOG}
 CHECK_STAT $?
 
-PRINT cart-main cart
+mv cart-main cart
 cd cart
 
 PRINT "Install NODEJS dependencies for cart component"
