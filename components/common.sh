@@ -162,9 +162,7 @@ PYTHON() {
   sed -i -e "/^uid/ c uid = ${USER_ID}" -e "/^gid/ c gid = ${GROUP_ID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini
   CHECK_STAT $?
 
-  oshop.internal/' -e 's/USERHOST/user.roboshop.internal/' -e 's/AMQPHOST/rabbitmq.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service
-  /systemd.service /etc/systemd/system/${COMPONENT}.service
+  SYSTEMD
 
-   SYSTEMD 
 
 }
