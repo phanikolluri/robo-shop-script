@@ -21,6 +21,16 @@ PRINT "Reset root password"
   echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';" | mysql --connect-expired-password -uroot -p"${MYSQL_DEFAULT_PASSWORD}" &>>${LOG}
   CHECK_STAT $?
 
+MYSQL_DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{PRINT $NF}')
+
+echo show databases | mysql -uroot -p"${MYSQL_PASSWORD}" &>>${LOG}
+if [ $? -ne 0 ]; then
+  PRINT "Reset root password"
+  echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';" | mysql --connect-expired-password -uroot -p"${MYSQL_DEFAULT_PASSWORD}" &>>${LOG}
+  CHECK_STAT $?
+fi
+
+
 exit
 echo "uninstall plugin validate_password;" | mysql -uroot -p"${MYSQL_PASSWORD}"
 
