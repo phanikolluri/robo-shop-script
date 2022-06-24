@@ -2,6 +2,20 @@ source components/common.sh
 
 CHECK_ROOT
 
+PRINT "Configure yum repos"
+curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>${LOG}
+CHECK_STAT $?
+
+PRINT "Install mysql"
+yum install mysql-community-server -y &>>${LOG}
+systemctl enable mysqld &>>${LOG} && systemctl start mysqld &>>${LOG}
+CHECK_STAT $?
+
+PRINT "Reset root password"
+  echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';" | mysql --connect-expired-password -uroot -p"${MYSQL_DEFAULT_PASSWORD}" &>>${LOG}
+  CHECK_STAT $?
+
+exit
 
 
 #PRINT "Download schema"
