@@ -1,8 +1,9 @@
 source components/common.sh
 
+COMPONENT=payment
+PYTHON
+
 CHECK_ROOT
-
-
 
 yum install python36 gcc python3-devel -y
 useradd roboshop
