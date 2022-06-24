@@ -28,13 +28,18 @@ CHECK_STAT $?
 fi
 
 exit
-echo "uninstall plugin validate_password;" | mysql -uroot -p"${MYSQL_PASSWORD}"
+echo "uninstall plugin validate_password;" 2>>${LOG} | mysql -uroot -p"${MYSQL_PASSWORD}" &>>${LOG}
+if [ $? -eq 0 ]; then
+  PRINT "uninstall validate plugin password"
+  echo show plugins | mysql -uroot -p"RoboShop@1" | grep validate_password
+  CHECK_STAT $?
+fi  
 
-curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
-cd /tmp
-unzip -o mysql.zip
-cd mysql-main
-mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql
+#curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
+#cd /tmp
+#unzip -o mysql.zip
+#cd mysql-main
+#mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql
 
 
 
