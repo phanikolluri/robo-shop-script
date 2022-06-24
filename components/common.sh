@@ -87,8 +87,8 @@ NGINX() {
   yum install nginx -y &>>${LOG}
   CHECK_STAT $?
 
-  PRINT "Download ${COMPONENT} component"
-  curl -s -L -o /tmp/.zip "${COMPONENT}://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG}
+  PRINT "Download ${COMPONENT} content"
+  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG}
   CHECK_STAT $?
 
   PRINT "remove old content"
