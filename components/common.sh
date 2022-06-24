@@ -60,7 +60,7 @@ SYSTEMD() {
 
 
     PRINT "start ${COMPONENT} service"
-    systemctl enable ${COMPONENT} && systemctl restart ${COMPONENT}  &>>${LOG}
+    systemctl enable ${COMPONENT} &>>${LOG} && systemctl restart ${COMPONENT}  &>>${LOG}
     CHECK_STAT $?
 
 }
