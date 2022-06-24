@@ -31,7 +31,7 @@ if [ $? -ne 0 ]; then
 fi
 
 
-exit
+
 echo "uninstall plugin validate_password;" | mysql -uroot -p"${MYSQL_PASSWORD}" &>>${LOG}
 
 #PRINT "Download schema"
