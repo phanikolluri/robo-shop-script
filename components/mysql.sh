@@ -4,7 +4,7 @@ CHECK_ROOT
 
 if [ -z "${MYSQL_PASSWORD}" ]; then
   echo "Need MYSQL_PASSWORD env variable"
-  exit
+  exit 1
 fi   
 
 PRINT "Configure yum repos"
