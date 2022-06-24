@@ -39,12 +39,15 @@ if [ $? -eq 0 ]; then
 fi
 
 
+PRINT "Download schema"
+curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>${LOG}
+CHECK_STAT $?
 
-#PRINT "Download schema"
-#curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
-#cd /tmp
-#unzip -o mysql.zip &>>${LOG}
-#cd mysql-main
-#mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql &>>${LOG}
+PRINT "Load schema"
+cd /tmp && unzip -o mysql.zip &>>${LOG} && cd mysql-main && mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql &>>${LOG}
+CHECK_STAT $?
+
+
+
 
 
