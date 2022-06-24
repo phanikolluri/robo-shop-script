@@ -33,11 +33,11 @@ if [ $? -eq 0 ]; then
   CHECK_STAT $?
 fi  
 
-#curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
-#cd /tmp
-#unzip -o mysql.zip
-#cd mysql-main
-#mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql
+PRINT "Download schema"
+curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>${LOG}
+CHECK_STAT $?
 
+cd /tmp && unzip -o mysql.zip &>>${LOG} && cd mysql-main && mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql &>>${LOG}
+CHECK_STAT $?
 
 
