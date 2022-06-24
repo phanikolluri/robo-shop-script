@@ -145,14 +145,14 @@ PYTHON() {
   CHECK_ROOT
 
   PRINT "Install python-3"
-  yum install python36 gcc python3-devel -y &>>${LOG
+  yum install python36 gcc python3-devel -y &>>${LOG}
   CHECK_STAT $?
 
   APP_COMMON_SETUP 
                    
 
   PRINT "Install ${COMPONENT} dependencies"
-  mv ${COMPONENT}-main ${COMPONENT} && cd /home/roboshop/${COMPONENT} && pip3 install -r requirements.txt &>>${LOG
+  mv ${COMPONENT}-main ${COMPONENT} && cd /home/roboshop/${COMPONENT} && pip3 install -r requirements.txt &>>${LOG}
   CHECK_STAT $?
 
   USER_ID=$(id -u roboshop)
