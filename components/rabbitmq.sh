@@ -22,8 +22,8 @@ CHECK_STAT $?
 rabbitmqctl list_users | grep roboshop &>>${LOG}
 if [ $? -ne 0 ]; then
   PRINT "Create RABBITMQ user"
- rabbitmqctl add_user roboshop roboshop123 &>>${LOG}
- CHECK_STAT $?
+  rabbitmqctl add_user roboshop ${RABBITMQ_USER_PASSWORD} &>>${LOG}
+  CHECK_STAT $?
 fi
 
 PRINT "RABBITMQ user Tags and Permissions"
