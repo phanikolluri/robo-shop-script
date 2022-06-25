@@ -16,7 +16,7 @@ CHECK_STAT $?
 MYSQL_DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{PRINT $NF}')
 
 
-print "RESET Root Password"
+PRINT "RESET Root Password"
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';" | mysql --connect-expired-password -uroot -p"${MYSQL_DEFAULT_PASSWORD}" 
 CHECK_STAT $?
 
