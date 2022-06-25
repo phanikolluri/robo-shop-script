@@ -11,7 +11,7 @@ PRINT "Configure yum repos"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>${LOG}
 CHECK_STAT $?
 
-PRINT "Install mysql"
+PRINT "Install MYSQL"
 yum install mysql-community-server -y &>>${LOG}
 systemctl enable mysqld &>>${LOG} && systemctl start mysqld &>>${LOG}
 CHECK_STAT $?
@@ -38,7 +38,7 @@ curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/a
 CHECK_STAT $?
 
 PRINT "Load schema"
-cd /tmp && unzip -o mysql.zip &>>${LOG} && cd mysql-main && mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql &>>${LOG}
+cd /tmp && unzip mysql.zip &>>${LOG} && cd mysql-main && mysql -u root -p"${MYSQL_PASSWORD}" <shipping.sql &>>${LOG}
 CHECK_STAT $?
 
 
